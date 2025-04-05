@@ -14,11 +14,12 @@ public class BushStage1 : Interactable
     public override void InteractStart()
     {
         Invoke("SpreadSpores", interactionTimer);
+        //Play spore particle effect
     }
 
     private void SpreadSpores()
     {
-        //Write visual component
         bushCounter.Value++;
+        GetComponentInParent<Bush>().growing = true;
     }
 }
