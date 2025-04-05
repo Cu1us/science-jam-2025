@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 5764863173230766407}
   - component: {fileID: 6142705767641077349}
   - component: {fileID: 8137713061428729122}
+  - component: {fileID: 767677829691380108}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -187,4 +188,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6a2958469f95b4d9d9c61ccac485bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveDistance: 0
+  rotationSpeed: 0
   steps: {fileID: 11400000, guid: 163306fd15d496fa5bf2d582db6982bf, type: 2}
+  desiredFloorDistance: 0.5
+  tolerance: 0.05
+  currentExhaustion: 0
+  movementTimes: []
+--- !u!54 &767677829691380108
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684645232095689511}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

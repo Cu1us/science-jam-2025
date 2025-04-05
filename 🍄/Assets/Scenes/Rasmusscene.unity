@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 134719482}
   - component: {fileID: 134719483}
   - component: {fileID: 134719484}
+  - component: {fileID: 134719485}
   m_Layer: 0
   m_Name: Temptent
   m_TagString: Untagged
@@ -225,6 +226,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonPrompt: {fileID: 1757546467}
   startNextDay: {fileID: 0}
+--- !u!65 &134719485
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134719481}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &285727069
 GameObject:
   m_ObjectHideFlags: 0

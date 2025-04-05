@@ -20,6 +20,7 @@ public class InteractorCollider : MonoBehaviour
     {
         if (other.TryGetComponent(out Interactable interactable))
         {
+            interactable.SetButtonPromptVisible(false);
             InteractablesInRange.Remove(interactable);
             SelectClosestInteractable();
         }
@@ -28,7 +29,7 @@ public class InteractorCollider : MonoBehaviour
     void SelectClosestInteractable()
     {
         Interactable closestInteractable = null;
-        float closestSqrDistance = 0;
+        float closestSqrDistance = float.MaxValue;
         foreach (Interactable interactable in InteractablesInRange)
         {
             interactable.SetButtonPromptVisible(false);
