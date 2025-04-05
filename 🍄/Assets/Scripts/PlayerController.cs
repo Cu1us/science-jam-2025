@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator MovePlayer()
     {
-        stepTaken();
+        stepTaken?.Invoke();
 
         isMoving = true;
         float movementTime = movementSpeeds[currentExhaustion];
