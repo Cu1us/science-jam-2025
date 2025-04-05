@@ -6,7 +6,8 @@ public abstract class Interactable : MonoBehaviour
 {
     [SerializeField] GameObject ButtonPrompt;
 
-    public abstract void Interact();
+    public abstract void InteractStart();
+    public abstract void InteractEnd();
 
     public void SetButtonPromptVisible(bool visible)
     {
