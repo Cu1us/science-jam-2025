@@ -2,23 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bush : Interactable
+public class Bush : MonoBehaviour
 {
-    [SerializeField] float interactionTimer;
-    [SerializeField] IntReference bushCounter;
-    public override void InteractEnd()
+    [SerializeField] private GameObject[] stages;
+    private int stage = 0;
+    public void UpdateBush()
     {
-        CancelInvoke();
-    }
-
-    public override void InteractStart()
-    {
-        Invoke("SpreadSpores", interactionTimer);
-    }
-
-    private void SpreadSpores()
-    {
-        //Write visual component
-        bushCounter.Value++;
+        if(stage >= 3)
+        {
+            return;
+        }
+        stages[stage].SetActive(false);
+        stage++;
+        stages[stage].SetActive(true);
     }
 }
