@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bush : MonoBehaviour
+public class Bush : Interactable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float interactionTimer;
+    [SerializeField] IntReference bushCounter;
+    public override void InteractEnd()
     {
-        
+        CancelInvoke();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void InteractStart()
     {
-        
+        Invoke("SpreadSpores", interactionTimer);
+    }
+
+    private void SpreadSpores()
+    {
+        //Write visual component
+        bushCounter.Value++;
     }
 }
