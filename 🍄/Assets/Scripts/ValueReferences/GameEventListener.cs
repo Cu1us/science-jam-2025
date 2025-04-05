@@ -14,6 +14,8 @@ public class GameEventListener : MonoBehaviour
     {
         if (!Listening)
         {
+            Listening = true;
+            Event.Event -= Invoked;
             Event.Event += Invoked;
         }
     }
@@ -22,6 +24,8 @@ public class GameEventListener : MonoBehaviour
     {
         if (!Listening)
         {
+            Listening = true;
+            Event.Event -= Invoked;
             Event.Event += Invoked;
         }
     }
@@ -29,6 +33,7 @@ public class GameEventListener : MonoBehaviour
     {
         if (Listening)
         {
+            Listening = false;
             Event.Event -= Invoked;
         }
     }

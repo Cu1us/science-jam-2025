@@ -12,6 +12,7 @@ public class GameEvent : ScriptableObject
 {
     public void Invoke()
     {
+        //Debug.Log($"Event {name} has been invoked!");
         Event?.Invoke();
     }
     [NonSerialized] public Action Event;
