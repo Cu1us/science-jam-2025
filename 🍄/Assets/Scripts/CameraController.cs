@@ -41,11 +41,11 @@ public class CameraController : MonoBehaviour
         Vector3 tempVec = (transform.position + offset) - target.position;
         if (Mathf.Abs(tempVec.z) > horisontalBorder)
         {
-            transform.position += -1 * MathF.Pow(tempVec.z, 5) * Vector3.forward * cameraSpeed * Time.deltaTime;
+            transform.position += -1 * MathF.Pow(tempVec.z, 3) * Vector3.forward * cameraSpeed * Time.deltaTime * 5;
         }
         if (Mathf.Abs(tempVec.x) > verticalBorder)
         {
-            transform.position +=  -1 * MathF.Pow(tempVec.x, 5) * Vector3.right * cameraSpeed * Time.deltaTime;
+            transform.position +=  -1 * MathF.Pow(tempVec.x, 3) * Vector3.right * cameraSpeed * Time.deltaTime;
         }
         yAxis.x = transform.position.x;
         yAxis.y = -1 * offset.y + target.position.y;
