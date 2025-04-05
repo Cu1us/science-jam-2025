@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     Vector2 inputAxis;
 
-
+    LayerMask terrain;
 
     public enum Exhaustion
     {
@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
         {
             movementSpeeds.Add((Exhaustion)i, movementTimes[i]);
         }
+        terrain = LayerMask.GetMask("Terrain");
 
     }
 
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
     void SetDistanceRotation()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, terrain))
         {
             if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity))
             {

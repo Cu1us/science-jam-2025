@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Camp1 : Interactable
 {
+    public GameEvent startNextDay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +20,8 @@ public class Camp1 : Interactable
 
     public override void InteractStart()
     {
+        startNextDay?.Invoke();
         throw new System.NotImplementedException();
-
-
 
     }
 

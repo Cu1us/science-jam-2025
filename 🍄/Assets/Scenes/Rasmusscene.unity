@@ -223,7 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7f896900ce00a47b5da1a8c96cf191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ButtonPrompt: {fileID: 0}
+  ButtonPrompt: {fileID: 1757546467}
+  startNextDay: {fileID: 0}
 --- !u!1 &285727069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,6 +1187,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractionButtonPrompt
       objectReference: {fileID: 0}
+    - target: {fileID: 9198570998945305911, guid: e1d27d5aec48854c6aec7a3f982075b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1241,22 +1247,22 @@ PrefabInstance:
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.6118
+      value: -0.24941477
       objectReference: {fileID: 0}
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.99
+      value: 1.665
       objectReference: {fileID: 0}
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.4454
+      value: -2.8292618
       objectReference: {fileID: 0}
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
@@ -1266,7 +1272,7 @@ PrefabInstance:
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
@@ -1281,7 +1287,7 @@ PrefabInstance:
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
