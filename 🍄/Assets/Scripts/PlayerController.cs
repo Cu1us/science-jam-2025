@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         while (Vector3.Distance(transform.position, destination) > 0)
         {
             currentMovementTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, destination, currentMovementTime / movementTime);
+            transform.position = Vector3.Lerp(transform.position, destination, movementTime);
             yield return null;
         }
         Debug.Log("Done now");
