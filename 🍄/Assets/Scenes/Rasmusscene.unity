@@ -700,7 +700,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1056689458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,7 +1163,6 @@ MonoBehaviour:
   cameraAngle: 45
   horisontalBorder: 0.25
   verticalBorder: 0.25
-  depthBorder: 0.25
   cameraSpeed: 100
 --- !u!1 &1655196114
 GameObject:
@@ -1573,12 +1572,12 @@ PrefabInstance:
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.38267425
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.34211248
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
