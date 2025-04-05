@@ -26,6 +26,7 @@ public class CameraController : MonoBehaviour
         var height = Mathf.Sin(cameraAngle * (Mathf.PI / 180)) * cameraDistance;
         var length = Mathf.Cos(cameraAngle * (Mathf.PI / 180)) * cameraDistance;
         cameraVector = new Vector3(0, height, length * (-1));
+        transform.localPosition = target.transform.position;
         transform.localPosition += cameraVector;
         transform.rotation = Quaternion.Euler(cameraAngle, 0, 0);
         cameraVector.Normalize();
