@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [System.Serializable]
-struct DialogueBox
+public struct DialogueBox
 {
-    [SerializeField] private Sprite characterPortrait;
-    [SerializeField] private string dialogueText;
+    [SerializeField] public Sprite characterPortrait;
+    [SerializeField] public string dialogueText;
 }
 [System.Serializable]
 public struct Conversation
 {
-    [SerializeField] private DialogueBox[] dialogueBoxes;
+    [SerializeField] public DialogueBox[] dialogueBoxes;
 }
 [CreateAssetMenu(menuName = "Dialogue")]
 public class Dialogue : ScriptableObject
