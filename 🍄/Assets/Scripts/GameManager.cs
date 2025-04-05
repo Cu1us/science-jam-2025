@@ -29,28 +29,48 @@ public class GameManager : MonoBehaviour
         RemainingSteps.Value = BaseMaxSteps + MaxStepsPerBushGrown;
     }
 
+
     IEnumerator BlackScreenZoom(Vector3 targetSize)
     {
+        Vector3 initialChildScale = mushroomMask.transform.GetChild(0).localScale;
+        const float epsilon = 0.0001f;
+        float stepSpeed = zoomSpeed; // how many units per second
+
         while (Vector3.Distance(mushroomMask.transform.localScale, targetSize) > 0.01f)
         {
-            mushroomMask.transform.localScale = Vector3.Lerp(
-                mushroomMask.transform.localScale,
-                targetSize,
-                Time.deltaTime * zoomSpeed
-            );
+            Vector3 currentScale = mushroomMask.transform.localScale;
+
+            // Move the scale consistently
+            Vector3 newScale = Vector3.MoveTowards(currentScale, targetSize, stepSpeed * Time.deltaTime);
+            mushroomMask.transform.localScale = newScale;
+
+            // Prevent divide by zero
+            float safeScaleX = Mathf.Max(newScale.x, epsilon);
+
+            // Inverse scale for child
+            Vector3 oppositeScale = initialChildScale * (1f / safeScaleX);
+            mushroomMask.transform.GetChild(0).localScale = oppositeScale;
+
             yield return null;
         }
 
-        // Optionally snap to exact target size at the end
+        // Snap to final size
         mushroomMask.transform.localScale = targetSize;
+        float finalSafeScaleX = Mathf.Max(targetSize.x, epsilon);
+        mushroomMask.transform.GetChild(0).localScale = initialChildScale * (1f / finalSafeScaleX);
+
+        yield break;
     }
+
+
+
 
 
     private void Update()
     {
         if (Input.GetKeyDown("o"))
         {
-            StartCoroutine(BlackScreenZoom(new Vector3(1000000, 1000000, 1000000)));
+            StartCoroutine(BlackScreenZoom(new Vector3(40, 40, 40)));
         }
         else if (Input.GetKeyDown("l"))
         {
