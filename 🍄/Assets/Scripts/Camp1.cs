@@ -19,5 +19,13 @@ public class Camp1 : Interactable
     public override void InteractStart()
     {
         throw new System.NotImplementedException();
+
+
+
+    }
+
+    public override void InteractEnd()
+    {
+        throw new System.NotImplementedException();
     }
 }
