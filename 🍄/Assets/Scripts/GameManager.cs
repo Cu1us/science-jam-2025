@@ -7,11 +7,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] IntReference CurrentDay;
     [SerializeField] GameEvent OnDayProgressed;
     [SerializeField] IntReference RemainingSteps;
-    [SerializeField] int[] MaxStepsPerDay;
+    [SerializeField] int BaseMaxSteps;
+    [SerializeField] int MaxStepsPerBushGrown;
 
     [SerializeField] GameObject mushroomMask;
 
     public float zoomSpeed = 5;
+    void Awake()
+    {
+        RefillSteps();
+    }
     public void FadeToNextDay()
     {
         CurrentDay.Value++;
@@ -21,12 +26,7 @@ public class GameManager : MonoBehaviour
 
     void RefillSteps()
     {
-        int maxSteps = 0;
-        if (CurrentDay.Value < MaxStepsPerDay.Length)
-        {
-            maxSteps = MaxStepsPerDay[CurrentDay.Value];
-        }
-        RemainingSteps.Value = maxSteps;
+        RemainingSteps.Value = BaseMaxSteps + MaxStepsPerBushGrown;
     }
 
     IEnumerator BlackScreenZoom(Vector3 targetSize)
