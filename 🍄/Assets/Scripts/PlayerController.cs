@@ -102,20 +102,24 @@ public class PlayerController : MonoBehaviour
 
         isMoving = true;
         float movementTime = movementSpeeds[currentExhaustion];
-        float currentMovementTime = 0f;//The amount of time that has passed
+        float currentMovementTime = 0f;
 
         Vector3 origin = transform.position;
         Vector3 destination = transform.position + inputAxis.x * transform.forward * moveDistance;
 
         Debug.Log("Destination is:" + destination);
 
-        while (Vector3.Distance(transform.position, destination) > 0)
+        while (currentMovementTime < movementTime)
         {
             currentMovementTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, destination, movementTime);
+            float t = currentMovementTime / movementTime;
+            transform.position = Vector3.Lerp(origin, destination, t);
             yield return null;
         }
+
+        transform.position = destination; // Snap to destination at the end
         Debug.Log("Done now");
         isMoving = false;
     }
+
 }

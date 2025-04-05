@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown("o"))
         {
-            StartCoroutine(BlackScreenZoom(new Vector3(1000, 1000, 1)));
+            StartCoroutine(BlackScreenZoom(new Vector3(1000000, 1000000, 1000000)));
         }
         else if (Input.GetKeyDown("l"))
         {
