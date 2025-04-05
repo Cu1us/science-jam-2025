@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camp : MonoBehaviour
+public class Camp : Interactable
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameEvent startNextDay;
+
+    public override void InteractStart()
     {
-        
+        startNextDay?.Invoke();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void InteractEnd()
     {
         
     }
