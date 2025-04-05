@@ -6,6 +6,7 @@ public class BushStage1 : Interactable
 {
     [SerializeField] float interactionTimer;
     [SerializeField] IntReference bushCounter;
+    [SerializeField] GameEvent reverter;
     public override void InteractEnd()
     {
         CancelInvoke();

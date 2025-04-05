@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a345bee40e766711a3a36b94e229998, type: 3}
   m_Name: Remaining Steps
   m_EditorClassIdentifier: 
-  _value: 100
-  DefaultValue: 100
+  _value: 5
+  DefaultValue: 5
