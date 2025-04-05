@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonPrompt: {fileID: 1757546467}
-  startNextDay: {fileID: 0}
+  startNextDay: {fileID: 11400000, guid: bf1ee006cf3ea65788747b3af63000e9, type: 2}
 --- !u!1 &285727069
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,7 +980,7 @@ GameObject:
   - component: {fileID: 1734141247}
   - component: {fileID: 1734141246}
   - component: {fileID: 1734141245}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
