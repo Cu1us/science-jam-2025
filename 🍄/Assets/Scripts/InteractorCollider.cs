@@ -43,6 +43,7 @@ public class InteractorCollider : MonoBehaviour
         if (closestInteractable)
         {
             closestInteractable.SetButtonPromptVisible(true);
+            SelectedInteractable = closestInteractable;
         }
     }
 
@@ -50,10 +51,12 @@ public class InteractorCollider : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact") && SelectedInteractable != null)
         {
+            Debug.LogWarning($"Interacting with {SelectedInteractable.name}");
             SelectedInteractable.InteractEnd();
         }
         if (Input.GetButtonUp("Interact") && SelectedInteractable != null)
         {
+            Debug.LogWarning($"Uninteracting with {SelectedInteractable.name}");
             SelectedInteractable.InteractStart();
             SelectClosestInteractable();
         }
