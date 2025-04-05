@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Dialogue gameDialogue;
+    private Conversation currentConversation;
+    public void loadConversation(int i)
     {
-        
+        currentConversation = gameDialogue.gameDialogue[i];
     }
 
-    // Update is called once per frame
-    void Update()
+    public void startConversation()
     {
-        
+
     }
 }
