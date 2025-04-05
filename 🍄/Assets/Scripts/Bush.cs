@@ -5,10 +5,11 @@ using UnityEngine;
 public class Bush : MonoBehaviour
 {
     [SerializeField] private GameObject[] stages;
+    public bool growing = false;
     private int stage = 0;
     public void UpdateBush()
     {
-        if(stage >= 3)
+        if(stage >= 3 || !growing)
         {
             return;
         }
