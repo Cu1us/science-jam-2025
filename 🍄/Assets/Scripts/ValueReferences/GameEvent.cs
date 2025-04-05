@@ -14,7 +14,7 @@ public class GameEvent : ScriptableObject
     {
         Event?.Invoke();
     }
-    public Action Event;
+    [NonSerialized] public Action Event;
 
     private void OnEnable()
     {
