@@ -13,12 +13,10 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed;
     public IntReference steps;
 
-
+    [SerializeField] GameEvent onDeath;
 
     public float desiredFloorDistance = 0.5f;
     public float tolerance = 0.05f;
-
-
 
     public Exhaustion currentExhaustion;
 
@@ -30,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     LayerMask terrain;
 
+    bool dead = false;
     public enum Exhaustion
     {
         low,
@@ -54,6 +53,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dead)
+            return;
+
         inputAxis = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal"));
 
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + inputAxis.y * rotationSpeed * Time.deltaTime, transform.eulerAngles.z);
@@ -64,7 +66,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("calledMovePlayer");
             StartCoroutine(MovePlayer());
         }
-
+        if (steps.Value <= 0)
+        {
+            onDeath.Invoke();
+            dead = true;
+        }
     }
 
     void SetDistanceRotation()

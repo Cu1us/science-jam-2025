@@ -12,3 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dc6c9a9b87f73a44b34fad2adbc5df0, type: 3}
   m_Name: GameDialogue
   m_EditorClassIdentifier: 
+  gameDialogue:
+  - dialogueBoxes:
+    - characterPortrait: {fileID: 0}
+      dialogueText: words
+    - characterPortrait: {fileID: 0}
+      dialogueText: wor
+    - characterPortrait: {fileID: 0}
+      dialogueText: word
+  - dialogueBoxes: []
+  - dialogueBoxes: []
