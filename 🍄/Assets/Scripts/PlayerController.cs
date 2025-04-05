@@ -63,7 +63,6 @@ public class PlayerController : MonoBehaviour
 
         if (isMoving == false && inputAxis.x != 0)
         {
-            Debug.Log("calledMovePlayer");
             StartCoroutine(MovePlayer());
         }
         if (steps.Value <= 0)
@@ -80,13 +79,11 @@ public class PlayerController : MonoBehaviour
         {
             if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity))
             {
-                Debug.Log("Raycast hit: " + hit.collider.name + " | Distance: " + hit.distance);
 
                 if (Mathf.Abs(hit.distance - desiredFloorDistance) > tolerance)
                 {
                     float correction = desiredFloorDistance - hit.distance;
                     transform.position += new Vector3(0f, correction, 0f);
-                    Debug.Log("Corrected Y by: " + correction);
                 }
 
                 transform.rotation = Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal));
@@ -107,7 +104,6 @@ public class PlayerController : MonoBehaviour
         Vector3 origin = transform.position;
         Vector3 destination = transform.position + inputAxis.x * transform.forward * moveDistance;
 
-        Debug.Log("Destination is:" + destination);
 
         while (currentMovementTime < movementTime)
         {
@@ -118,7 +114,6 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.position = destination; // Snap to destination at the end
-        Debug.Log("Done now");
         isMoving = false;
     }
 
