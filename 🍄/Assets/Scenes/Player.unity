@@ -288,12 +288,12 @@ PrefabInstance:
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -63.7
+      value: -71.52
       objectReference: {fileID: 0}
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.72
+      value: 3.94
       objectReference: {fileID: 0}
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
@@ -339,6 +339,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137713061428729122, guid: bebdbab2f667bb540b668f63357cc127,
+        type: 3}
+      propertyPath: moveDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137713061428729122, guid: bebdbab2f667bb540b668f63357cc127,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137713061428729122, guid: bebdbab2f667bb540b668f63357cc127,
+        type: 3}
+      propertyPath: movementTimes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137713061428729122, guid: bebdbab2f667bb540b668f63357cc127,
+        type: 3}
+      propertyPath: movementTimes.Array.data[0]
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137713061428729122, guid: bebdbab2f667bb540b668f63357cc127,
+        type: 3}
+      propertyPath: movementTimes.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137713061428729122, guid: bebdbab2f667bb540b668f63357cc127,
+        type: 3}
+      propertyPath: movementTimes.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137713061428729122, guid: bebdbab2f667bb540b668f63357cc127,
+        type: 3}
+      propertyPath: movementTimes.Array.data[3]
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
