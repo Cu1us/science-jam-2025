@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.LogWarning("Starting new day!");
         BlackScreenZoom (new Vector3(0, 0, 0));
+        RefillSteps();
         OnDayProgressed?.Invoke();
-
     }
 
     void RefillSteps()
