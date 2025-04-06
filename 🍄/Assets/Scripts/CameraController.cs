@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private float cameraDistance;
     [SerializeField] private float cameraAngle;
+    [SerializeField] private float cameraHeight;
 
     [SerializeField] private float horisontalBorder;
     [SerializeField] private float verticalBorder;
@@ -26,13 +27,21 @@ public class CameraController : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
 
-        var height = Mathf.Sin(cameraAngle * (Mathf.PI / 180)) * cameraDistance;
-        var length = Mathf.Cos(cameraAngle * (Mathf.PI / 180)) * cameraDistance;
-        offset = Vector3.Scale(target.position.normalized, new Vector3(length, height, length));
-        offset.y = target.position.y + height;
-        transform.localPosition = target.transform.position + offset;
-        offset *= -1;
-        transform.LookAt(new Vector3(0, target.position.y - 15f, 0));
+        // var height = Mathf.Sin(cameraAngle * (Mathf.PI / 180)) * cameraDistance;
+        // var length = Mathf.Cos(cameraAngle * (Mathf.PI / 180)) * cameraDistance;
+        // Vector3 playerPosXZ = target.position;
+        // playerPosXZ.y = 0;
+        // offset = Vector3.Scale(playerPosXZ.normalized, new Vector3(length, height, length));
+        // offset.y = target.position.y + height;
+        // transform.position = target.transform.position + offset;
+        // offset *= -1;
+
+        Vector3 dirFromOrigo = target.position;
+        dirFromOrigo.y = 0;
+        dirFromOrigo = dirFromOrigo.normalized;
+        transform.position = target.transform.position + (dirFromOrigo * cameraDistance) + (Vector3.up * cameraHeight);
+
+        transform.LookAt(target.position + Vector3.up * 3);
     }
 
     // Update is called once per frame
@@ -44,7 +53,7 @@ public class CameraController : MonoBehaviour
     void MoveCamera()
     {
         UpdateOffset();
-        Vector3 tempVec = (transform.position + offset) - target.position;
+        /*Vector3 tempVec = (transform.position + offset) - target.position;
         if (Mathf.Abs(tempVec.z) > horisontalBorder)
         {
             transform.position += -1 * MathF.Pow(tempVec.z, 3) * Vector3.forward * cameraSpeed * Time.deltaTime * 5;
@@ -57,6 +66,6 @@ public class CameraController : MonoBehaviour
         yAxis.y = -1 * offset.y + target.position.y;
         yAxis.z = transform.position.z;
 
-        transform.position = yAxis;
+        transform.position = yAxis;*/
     }
 }

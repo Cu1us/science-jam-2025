@@ -5,6 +5,7 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using static UnityEngine.UI.Image;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float floorCastHeight;
 
     [SerializeField] GameEvent onDeath;
+    [SerializeField] Animator animator;
 
     public float desiredFloorDistance = 0.5f;
     public float tolerance = 0.05f;
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
         if (dead)
             return;
 
+
         inputAxis = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal"));
 
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + inputAxis.y * rotationSpeed * Time.deltaTime, transform.eulerAngles.z);
@@ -74,13 +77,15 @@ public class PlayerController : MonoBehaviour
 
         if (isMoving == false && inputAxis.x != 0)
         {
+            animator.SetFloat("AnimationSpeed" ,3);
             StartCoroutine(MovePlayer());
         }
-        /*if (steps.Value <= 0)
+        if (steps.Value <= 0)
         {
+            animator.SetTrigger("Die");
             onDeath.Invoke();
             dead = true;
-        }*/
+        }
 
         RaycastHit frontHit;
         RaycastHit backHit;
@@ -185,6 +190,7 @@ public class PlayerController : MonoBehaviour
         Vector3 yOnlyForward = Quaternion.Euler(0, transform.eulerAngles.y, 0) * Vector3.forward;
         RaycastHit hit;
 
+        Debug.Log("scream");
         Debug.DrawRay(raycastOrigin, yOnlyForward, Color.red, 999);
 
         if (inputAxis.x > 0)
@@ -233,6 +239,6 @@ public class PlayerController : MonoBehaviour
         transform.position = finalPos;
 
         isMoving = false;
-
+        animator.SetFloat("AnimationSpeed", 0);
     }
 }
