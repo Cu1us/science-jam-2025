@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public float moveDistance;
     public float rotationSpeed;
     public IntReference steps;
+    public float wallCastHeight;
+    public float floorCastHeight;
 
     [SerializeField] GameEvent onDeath;
 
@@ -32,7 +34,12 @@ public class PlayerController : MonoBehaviour
 
     bool dead = false;
 
-    public float noMoveDistance = 2f;
+    public float slideSpeed;
+
+    [SerializeField] Vector3 rayOriginFrontOffset;
+    [SerializeField] Vector3 rayOriginBackOffset;
+
+    public float noMoveDistance = 5f;
     public enum Exhaustion
     {
         low,
@@ -51,7 +58,6 @@ public class PlayerController : MonoBehaviour
             movementSpeeds.Add((Exhaustion)i, movementTimes[i]);
         }
         terrain = LayerMask.GetMask("Terrain");
-
     }
 
     // Update is called once per frame
@@ -75,104 +81,140 @@ public class PlayerController : MonoBehaviour
             dead = true;
         }*/
 
+        RaycastHit frontHit;
+        RaycastHit backHit;
 
+        Vector3 rayOriginFront = transform.position + rayOriginFrontOffset;
+        Vector3 rayOriginBack = transform.position + rayOriginBackOffset;
 
-        RaycastHit hit;
-
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, terrain))
+        if (Physics.Raycast(rayOriginFront, Vector3.down, out frontHit, Mathf.Infinity, terrain) &&
+            Physics.Raycast(rayOriginBack, Vector3.down, out backHit, Mathf.Infinity, terrain))
         {
-            Vector3 normal = hit.normal;
-            float slopeAngle = Vector3.Angle(normal, Vector3.up);
+            Vector3 frontPoint = frontHit.point;
+            Vector3 backPoint = backHit.point;
 
-            Debug.Log("Slope angle: " + slopeAngle);
+            Vector3 direction = frontPoint - backPoint;
 
-            if (slopeAngle > 30f)
+            float verticalDifference = direction.y;
+            Vector3 horizontalDirection = new Vector3(direction.x, 0f, direction.z);
+            float horizontalDistance = horizontalDirection.magnitude;
+
+            float slopeAngle = Mathf.Atan2(verticalDifference, horizontalDistance) * Mathf.Rad2Deg;
+
+            Debug.Log("Slope angle between hit points: " + slopeAngle);
+
+            if (Mathf.Abs(slopeAngle) > 30f)
             {
-                // Calculate direction down the slope
-                Vector3 downSlopeDirection = Vector3.Cross(Vector3.Cross(normal, Vector3.down), normal).normalized;
+                // Calculate downhill direction on the slope
+                Vector3 slopeDir = Vector3.ProjectOnPlane(direction.normalized, Vector3.up).normalized;
 
-                // Move the player slightly down the slope
-                float moveDistance = 1f; // Adjust as needed
-                transform.position += downSlopeDirection * moveDistance;
+                // Slide the player down the slope
+                transform.Translate(slopeDir * slideSpeed * Time.deltaTime, Space.World);
             }
         }
 
-
-    }
-
-    void SetDistanceRotation()
-    {
-        RaycastHit hit;
-
-
-
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, terrain))
+        void SetDistanceRotation()
         {
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity))
+            RaycastHit hit;
+            Vector3 raycastOrigin = new Vector3(transform.position.x, transform.position.y + floorCastHeight, transform.position.z);
+
+            if (Physics.Raycast(raycastOrigin, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, terrain))
             {
-                if (Mathf.Abs(hit.distance - desiredFloorDistance) > tolerance)
+                if (Physics.Raycast(raycastOrigin, Vector3.down, out hit, Mathf.Infinity))
                 {
-                    float correction = desiredFloorDistance - hit.distance;
-                    transform.position += new Vector3(0f, correction, 0f);
+                    if (Mathf.Abs(hit.distance - desiredFloorDistance) > tolerance)
+                    {
+                        float correction = desiredFloorDistance - hit.distance;
+                        transform.position += new Vector3(0f, correction, 0f);
+                    }
+
+                    // Calculate the desired rotation based on terrain normal
+                    Vector3 normal = hit.normal;
+                    Vector3 forward = Vector3.ProjectOnPlane(transform.forward, normal).normalized;
+
+                    if (forward.sqrMagnitude < 0.001f)
+                    {
+                        forward = Vector3.ProjectOnPlane(transform.up, normal).normalized;
+                    }
+
+                    Quaternion targetRotation = Quaternion.LookRotation(forward, normal);
+
+                    // Convert to Euler and clamp x (pitch) and z (roll)
+                    Vector3 clampedEuler = targetRotation.eulerAngles;
+
+                    // Convert 0–360 to -180–180 range
+                    clampedEuler.x = ClampAngle(clampedEuler.x, -30f, 30f);
+                    clampedEuler.z = ClampAngle(clampedEuler.z, -30f, 30f);
+
+                    transform.rotation = Quaternion.Euler(clampedEuler);
                 }
-
-                transform.rotation = Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal));
             }
-        }
-        else
-        {
-            Debug.Log("ray failed");
-        }
-    }
-
-
-    public IEnumerator MovePlayer()
-    {
-        Vector3 raycastOrigin = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
-        Vector3 yOnlyForward = Quaternion.Euler(0, transform.eulerAngles.y, 0) * Vector3.forward;
-        RaycastHit hit;
-
-        if (inputAxis.x > 0)
-        {
-            Debug.Log("Inputaxis above 0");
-            if (Physics.Raycast(raycastOrigin, yOnlyForward, out hit, noMoveDistance, terrain))
+            else
             {
-                Debug.DrawRay(transform.position, yOnlyForward, Color.red, 999);
-                Debug.Log("raycast hit");
-                Debug.Log(hit.distance + "distance from front object");
-                yield break;
+                Debug.Log("ray failed");
             }
         }
-        else if (inputAxis.x < 0)
+
+        // Helper method to clamp angles between -180 and 180 before clamping
+        float ClampAngle(float angle, float min, float max)
         {
-            if (Physics.Raycast(raycastOrigin, yOnlyForward, out hit, -noMoveDistance, terrain))
+            angle = (angle > 180) ? angle - 360 : angle;
+            return Mathf.Clamp(angle, min, max);
+        }
+
+
+
+
+        IEnumerator MovePlayer()
+        {
+            Vector3 raycastOrigin = new Vector3(transform.position.x, transform.position.y + wallCastHeight, transform.position.z);
+            Vector3 yOnlyForward = Quaternion.Euler(0, transform.eulerAngles.y, 0) * Vector3.forward;
+            RaycastHit hit;
+
+            Debug.DrawRay(raycastOrigin, yOnlyForward, Color.red, 999);
+
+            if (inputAxis.x > 0)
             {
-                yield break;
+                Debug.Log("Inputaxis above 0");
+                if (Physics.Raycast(raycastOrigin, yOnlyForward, out hit, noMoveDistance, terrain))
+                {
+
+                    Debug.Log("raycast hit");
+                    Debug.Log(hit.distance + "distance from front object");
+                    yield break;
+                }
             }
+            else if (inputAxis.x < 0)
+            {
+                if (Physics.Raycast(raycastOrigin, yOnlyForward, out hit, -noMoveDistance, terrain))
+                {
+                    yield break;
+                }
+            }
+
+            stepTaken?.Invoke();
+            steps.Value--;
+
+            isMoving = true;
+            float movementTime = movementSpeeds[currentExhaustion];
+            float currentMovementTime = 0f;
+
+
+            Vector3 origin = transform.position;
+            Vector3 destination = transform.position + inputAxis.x * yOnlyForward * moveDistance;
+
+
+            while (currentMovementTime < movementTime)
+            {
+                currentMovementTime += Time.deltaTime;
+                float t = currentMovementTime / movementTime;
+                transform.position = Vector3.Lerp(origin, destination, t);
+                yield return null;
+            }
+
+            transform.position = destination; // Snap to destination at the end
+            isMoving = false;
         }
 
-        stepTaken?.Invoke();
-        steps.Value--;
-
-        isMoving = true;
-        float movementTime = movementSpeeds[currentExhaustion];
-        float currentMovementTime = 0f;
-
-
-        Vector3 origin = transform.position;
-        Vector3 destination = transform.position + inputAxis.x * yOnlyForward * moveDistance;
-
-
-        while (currentMovementTime < movementTime)
-        {
-            currentMovementTime += Time.deltaTime;
-            float t = currentMovementTime / movementTime;
-            transform.position = Vector3.Lerp(origin, destination, t);
-            yield return null;
-        }
-
-        transform.position = destination; // Snap to destination at the end
-        isMoving = false;
     }
-
 }
