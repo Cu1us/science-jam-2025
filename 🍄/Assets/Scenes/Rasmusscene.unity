@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonPrompt: {fileID: 1757546467}
-  startNextDay: {fileID: 11400000, guid: bf1ee006cf3ea65788747b3af63000e9, type: 2}
+  onCampClicked: {fileID: 0}
 --- !u!1 &285727069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,7 +1027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1655096372
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1160,6 +1160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraDistance: 10
   cameraAngle: 45
+  cameraHeight: 0
   horisontalBorder: 0.25
   verticalBorder: 0.25
   cameraSpeed: 100
