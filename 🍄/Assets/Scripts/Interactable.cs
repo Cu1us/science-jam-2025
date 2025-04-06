@@ -6,11 +6,14 @@ public abstract class Interactable : MonoBehaviour
 {
     [SerializeField] GameObject ButtonPrompt;
 
+    protected bool isInteractable = true;
     public abstract void InteractStart();
     public abstract void InteractEnd();
 
     public void SetButtonPromptVisible(bool visible)
     {
+        if (!isInteractable)
+            return;
         ButtonPrompt.SetActive(visible);
     }
 }

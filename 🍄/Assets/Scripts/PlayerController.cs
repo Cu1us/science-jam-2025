@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using static UnityEngine.UI.Image;
 
@@ -29,6 +31,8 @@ public class PlayerController : MonoBehaviour
     LayerMask terrain;
 
     bool dead = false;
+
+    public float noMoveDistance = 2f;
     public enum Exhaustion
     {
         low,
@@ -65,21 +69,47 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(MovePlayer());
         }
-        if (steps.Value <= 0)
+        /*if (steps.Value <= 0)
         {
             onDeath.Invoke();
             dead = true;
+        }*/
+
+
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, terrain))
+        {
+            Vector3 normal = hit.normal;
+            float slopeAngle = Vector3.Angle(normal, Vector3.up);
+
+            Debug.Log("Slope angle: " + slopeAngle);
+
+            if (slopeAngle > 30f)
+            {
+                // Calculate direction down the slope
+                Vector3 downSlopeDirection = Vector3.Cross(Vector3.Cross(normal, Vector3.down), normal).normalized;
+
+                // Move the player slightly down the slope
+                float moveDistance = 1f; // Adjust as needed
+                transform.position += downSlopeDirection * moveDistance;
+            }
         }
+
+
     }
 
     void SetDistanceRotation()
     {
         RaycastHit hit;
+
+
+
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, terrain))
         {
             if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity))
             {
-
                 if (Mathf.Abs(hit.distance - desiredFloorDistance) > tolerance)
                 {
                     float correction = desiredFloorDistance - hit.distance;
@@ -89,11 +119,38 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal));
             }
         }
+        else
+        {
+            Debug.Log("ray failed");
+        }
     }
 
 
     public IEnumerator MovePlayer()
     {
+        Vector3 raycastOrigin = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
+        Vector3 yOnlyForward = Quaternion.Euler(0, transform.eulerAngles.y, 0) * Vector3.forward;
+        RaycastHit hit;
+
+        if (inputAxis.x > 0)
+        {
+            Debug.Log("Inputaxis above 0");
+            if (Physics.Raycast(raycastOrigin, yOnlyForward, out hit, noMoveDistance, terrain))
+            {
+                Debug.DrawRay(transform.position, yOnlyForward, Color.red, 999);
+                Debug.Log("raycast hit");
+                Debug.Log(hit.distance + "distance from front object");
+                yield break;
+            }
+        }
+        else if (inputAxis.x < 0)
+        {
+            if (Physics.Raycast(raycastOrigin, yOnlyForward, out hit, -noMoveDistance, terrain))
+            {
+                yield break;
+            }
+        }
+
         stepTaken?.Invoke();
         steps.Value--;
 
@@ -101,8 +158,9 @@ public class PlayerController : MonoBehaviour
         float movementTime = movementSpeeds[currentExhaustion];
         float currentMovementTime = 0f;
 
+
         Vector3 origin = transform.position;
-        Vector3 destination = transform.position + inputAxis.x * transform.forward * moveDistance;
+        Vector3 destination = transform.position + inputAxis.x * yOnlyForward * moveDistance;
 
 
         while (currentMovementTime < movementTime)

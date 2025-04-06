@@ -20,6 +20,11 @@ public class InteractorCollider : MonoBehaviour
     {
         if (other.TryGetComponent(out Interactable interactable))
         {
+            if (interactable == SelectedInteractable)
+            {
+                SelectedInteractable.InteractEnd();
+            }
+            SelectedInteractable = null;
             interactable.SetButtonPromptVisible(false);
             InteractablesInRange.Remove(interactable);
             SelectClosestInteractable();
@@ -52,12 +57,12 @@ public class InteractorCollider : MonoBehaviour
         if (Input.GetButtonDown("Interact") && SelectedInteractable != null)
         {
             Debug.LogWarning($"Interacting with {SelectedInteractable.name}");
-            SelectedInteractable.InteractEnd();
+            SelectedInteractable.InteractStart();
         }
         if (Input.GetButtonUp("Interact") && SelectedInteractable != null)
         {
             Debug.LogWarning($"Uninteracting with {SelectedInteractable.name}");
-            SelectedInteractable.InteractStart();
+            SelectedInteractable.InteractEnd();
             SelectClosestInteractable();
         }
     }

@@ -15,6 +15,6 @@ public class StepsCounter : MonoBehaviour
 
     void RemainingStepsUpdated()
     {
-        Label.text = $"Steps remaining: {StepsRef.Value}";
+        Label.text = StepsRef.Value.ToString();
     }
 }

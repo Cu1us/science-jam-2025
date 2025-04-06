@@ -14,13 +14,18 @@ public class BushStage1 : Interactable
 
     public override void InteractStart()
     {
+        if (!isInteractable)
+            return;
+
         Invoke("SpreadSpores", interactionTimer);
         //Play spore particle effect
     }
 
     private void SpreadSpores()
     {
+        GetComponent<AudioSource>().Play();
         bushCounter.Value++;
         GetComponentInParent<Bush>().growing = true;
+        isInteractable = false;
     }
 }
