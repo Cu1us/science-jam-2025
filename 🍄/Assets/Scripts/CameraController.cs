@@ -32,7 +32,7 @@ public class CameraController : MonoBehaviour
         offset.y = target.position.y + height;
         transform.localPosition = target.transform.position + offset;
         offset *= -1;
-        transform.rotation = Quaternion.Euler(cameraAngle, Vector3.SignedAngle(Vector3.forward, (target.transform.position - transform.position).normalized, Vector3.up), 0);
+        transform.LookAt(new Vector3(0, target.position.y - 15f, 0));
     }
 
     // Update is called once per frame
