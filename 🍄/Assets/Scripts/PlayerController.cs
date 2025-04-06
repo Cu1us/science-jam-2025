@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
             float slopeAngle = Vector3.Angle(slopeNormal, Vector3.up);
         }*/
 
-        if (Physics.Raycast(rayOriginFront, Vector3.down, out frontHit, Mathf.Infinity, terrain) &&
+        /*if (Physics.Raycast(rayOriginFront, Vector3.down, out frontHit, Mathf.Infinity, terrain) &&
             Physics.Raycast(rayOriginBack, Vector3.down, out backHit, Mathf.Infinity, terrain))
         {
             Vector3 slopeNormal = frontHit.normal;
@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
                 transform.position += downhillDirection * slideSpeed * Time.deltaTime;
             }
-        }
+        }*/
     }
 
 
