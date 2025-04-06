@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] IntReference CurrentDay;
     [SerializeField] GameEvent OnDayProgressed;
     [SerializeField] IntReference RemainingSteps;
+    [SerializeField] IntReference BushesGrown;
     [SerializeField] int BaseMaxSteps;
     [SerializeField] int MaxStepsPerBushGrown;
 
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     void RefillSteps()
     {
-        RemainingSteps.Value = BaseMaxSteps + MaxStepsPerBushGrown;
+        RemainingSteps.Value = BaseMaxSteps + MaxStepsPerBushGrown * BushesGrown.Value;
     }
 
 

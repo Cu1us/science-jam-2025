@@ -47,6 +47,7 @@ MonoBehaviour:
   CurrentDay: {fileID: 11400000, guid: 0fec4819f4fbef962bb4f5253a634635, type: 2}
   OnDayProgressed: {fileID: 11400000, guid: bf1ee006cf3ea65788747b3af63000e9, type: 2}
   RemainingSteps: {fileID: 11400000, guid: 163306fd15d496fa5bf2d582db6982bf, type: 2}
+  BushesGrown: {fileID: 11400000, guid: a56da631ff89bfe4686c36aa4bd95963, type: 2}
   BaseMaxSteps: 10
   MaxStepsPerBushGrown: 10
   mushroomMask: {fileID: 0}
