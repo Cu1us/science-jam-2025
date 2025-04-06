@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,9 +20,9 @@ public class GameManager : MonoBehaviour
     }
     public void FadeToNextDay()
     {
-        CurrentDay.Value++;
-        OnDayProgressed.Invoke();
-        RefillSteps();
+        BlackScreenZoom (new Vector3(0, 0, 0));
+
+
     }
 
     void RefillSteps()
@@ -59,7 +60,17 @@ public class GameManager : MonoBehaviour
         float finalSafeScaleX = Mathf.Max(targetSize.x, epsilon);
         mushroomMask.transform.GetChild(0).localScale = initialChildScale * (1f / finalSafeScaleX);
 
+        if (targetSize.magnitude == 0)
+        {
+            CurrentDay.Value++;
+            OnDayProgressed.Invoke();
+            RefillSteps();
+            BlackScreenZoom(new Vector3(40, 40, 40));
+        }
+
         yield break;
+
+
     }
 
 
@@ -68,13 +79,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("o"))
+        /*if (Input.GetKeyDown("o"))
         {
             StartCoroutine(BlackScreenZoom(new Vector3(40, 40, 40)));
         }
         else if (Input.GetKeyDown("l"))
         {
             StartCoroutine(BlackScreenZoom(new Vector3(0, 0, 0)));
-        }
+        }*/
     }
 }

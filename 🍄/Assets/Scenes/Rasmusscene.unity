@@ -1191,7 +1191,7 @@ RectTransform:
   m_GameObject: {fileID: 1655196114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 40, y: 40, z: 40}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 299804161}
@@ -1593,7 +1593,7 @@ PrefabInstance:
     - target: {fileID: 8137713061428729122, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: moveDistance
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8137713061428729122, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
@@ -1643,6 +1643,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5693180832916606268, guid: 7bf62e9ef721b65a6ae274a5d010d071,
+        type: 3}
+      propertyPath: zoomSpeed
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5693180832916606268, guid: 7bf62e9ef721b65a6ae274a5d010d071,
         type: 3}
       propertyPath: mushroomMask
