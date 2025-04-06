@@ -198,6 +198,8 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(raycastOrigin, yOnlyForward, out hit, noMoveDistance, terrain))
             {
+                isMoving = false;
+                animator.SetFloat("AnimationSpeed", 0);
                 yield break;
             }
         }
@@ -205,6 +207,8 @@ public class PlayerController : MonoBehaviour
         {
             if (Physics.Raycast(raycastOrigin, yOnlyForward, out hit, -noMoveDistance, terrain))
             {
+                isMoving = false;
+                animator.SetFloat("AnimationSpeed", 0);
                 yield break;
             }
         }
