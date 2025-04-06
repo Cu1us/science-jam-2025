@@ -20,10 +20,6 @@ public class DialogueManager : MonoBehaviour
         currentConversation = gameDialogue.gameDialogue[i];
         textElement.text = currentConversation.dialogueBoxes[step].dialogueText;
     }
-    private void Start()
-    {
-        StartConversation(0);
-    }
     private void Update()
     {
         if (!conversing)
