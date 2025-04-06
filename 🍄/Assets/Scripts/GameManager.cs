@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     }
     public void FadeToNextDay()
     {
+        Debug.LogWarning("Starting new day!");
         BlackScreenZoom (new Vector3(0, 0, 0));
 
 

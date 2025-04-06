@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonPrompt: {fileID: 0}
-  startNextDay: {fileID: 0}
+  onCampClicked: {fileID: 0}
 --- !u!1001 &5801365768997751079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ PrefabInstance:
     - target: {fileID: 6869564602670191838, guid: e1d27d5aec48854c6aec7a3f982075b3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2
+      value: 5.49
       objectReference: {fileID: 0}
     - target: {fileID: 6869564602670191838, guid: e1d27d5aec48854c6aec7a3f982075b3,
         type: 3}
