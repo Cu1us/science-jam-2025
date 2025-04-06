@@ -212,20 +212,27 @@ public class PlayerController : MonoBehaviour
 
 
         Vector3 origin = transform.position;
-        Vector3 destination = transform.position + inputAxis.x * yOnlyForward * moveDistance;
-
+        Vector3 destination = origin + inputAxis.x * yOnlyForward * moveDistance;
 
         while (currentMovementTime < movementTime)
         {
             currentMovementTime += Time.deltaTime;
             float t = currentMovementTime / movementTime;
-            transform.position = Vector3.Lerp(origin, destination, t);
+
+            // Interpolate only XZ, keep the current Y value
+            Vector3 interpolated = Vector3.Lerp(origin, destination, t);
+            interpolated.y = transform.position.y; // keep current Y every frame
+            transform.position = interpolated;
+
             yield return null;
         }
 
-        transform.position = destination;
+        // Final adjustment — keep Y stable
+        Vector3 finalPos = destination;
+        finalPos.y = transform.position.y;
+        transform.position = finalPos;
+
         isMoving = false;
+
     }
-
-
 }
