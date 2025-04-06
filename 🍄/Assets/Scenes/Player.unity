@@ -160,7 +160,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -350,12 +350,12 @@ PrefabInstance:
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -73.92
+      value: -43.39
       objectReference: {fileID: 0}
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.42
+      value: 5.25
       objectReference: {fileID: 0}
     - target: {fileID: 1383611336204967626, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
@@ -435,12 +435,17 @@ PrefabInstance:
     - target: {fileID: 8137713061428729122, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: wallCastHeight
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8137713061428729122, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
       propertyPath: floorCastHeight
-      value: -1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137713061428729122, guid: bebdbab2f667bb540b668f63357cc127,
+        type: 3}
+      propertyPath: desiredFloorDistance
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8137713061428729122, guid: bebdbab2f667bb540b668f63357cc127,
         type: 3}
