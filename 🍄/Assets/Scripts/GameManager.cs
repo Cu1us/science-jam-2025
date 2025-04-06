@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
             CurrentDay.Value++;
             OnDayProgressed.Invoke();
             RefillSteps();
-            BlackScreenZoom(new Vector3(40, 40, 40));
+            StartCoroutine(BlackScreenZoom(new Vector3(40, 40, 40)));
         }
 
         yield break;
