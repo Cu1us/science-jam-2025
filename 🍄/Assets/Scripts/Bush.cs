@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bush : MonoBehaviour
 {
     [SerializeField] private GameObject[] stages;
-    public bool growing = true;
+    public bool growing = false;
     private int stage = 0;
     public void UpdateBush()
     {
