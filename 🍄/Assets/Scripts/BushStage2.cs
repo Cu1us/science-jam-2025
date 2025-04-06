@@ -13,6 +13,10 @@ public class BushStage2 : Interactable
 
     public override void InteractStart()
     {
+        if (!isInteractable)
+            return;
+
         steps.Value += stepRegain;
+        isInteractable = false;
     }
 }
