@@ -19,15 +19,20 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        UpdateOffset();
+    }
+
+    void UpdateOffset()
+    {
         target = GameObject.FindGameObjectWithTag("Player").transform;
 
         var height = Mathf.Sin(cameraAngle * (Mathf.PI / 180)) * cameraDistance;
         var length = Mathf.Cos(cameraAngle * (Mathf.PI / 180)) * cameraDistance;
-        offset = new Vector3(0, height, length * (-1));
-        transform.localPosition = target.transform.position;
-        transform.localPosition += offset;
+        offset = Vector3.Scale(target.position.normalized, new Vector3(length, height, length));
+        offset.y = target.position.y + height;
+        transform.localPosition = target.transform.position + offset;
         offset *= -1;
-        transform.rotation = Quaternion.Euler(cameraAngle, 0, 0);
+        transform.rotation = Quaternion.Euler(cameraAngle, Vector3.SignedAngle(Vector3.forward, (target.transform.position - transform.position).normalized, Vector3.up), 0);
     }
 
     // Update is called once per frame
@@ -38,6 +43,7 @@ public class CameraController : MonoBehaviour
 
     void MoveCamera()
     {
+        UpdateOffset();
         Vector3 tempVec = (transform.position + offset) - target.position;
         if (Mathf.Abs(tempVec.z) > horisontalBorder)
         {
