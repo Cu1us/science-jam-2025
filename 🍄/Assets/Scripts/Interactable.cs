@@ -6,7 +6,7 @@ public abstract class Interactable : MonoBehaviour
 {
     [SerializeField] GameObject ButtonPrompt;
 
-    protected bool isInteractable;
+    protected bool isInteractable = true;
     public abstract void InteractStart();
     public abstract void InteractEnd();
 
