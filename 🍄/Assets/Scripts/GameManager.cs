@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public void FadeToNextDay()
     {
         Debug.LogWarning("Starting new day!");
-        BlackScreenZoom (new Vector3(0, 0, 0));
+        StartCoroutine(BlackScreenZoom(new Vector3(0, 0, 0)));
         RefillSteps();
         CurrentDay.Value++;
         OnDayProgressed?.Invoke();
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         float finalSafeScaleX = Mathf.Max(targetSize.x, epsilon);
         mushroomMask.transform.GetChild(0).localScale = initialChildScale * (1f / finalSafeScaleX);
 
-        if (targetSize.magnitude == 0)
+        if (targetSize == new Vector3(0,0,0))
         {
             CurrentDay.Value++;
             OnDayProgressed.Invoke();

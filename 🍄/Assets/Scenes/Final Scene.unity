@@ -26652,7 +26652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1036075124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37597,6 +37597,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5693180832916606268, guid: 7bf62e9ef721b65a6ae274a5d010d071,
+        type: 3}
+      propertyPath: zoomSpeed
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 5693180832916606268, guid: 7bf62e9ef721b65a6ae274a5d010d071,
         type: 3}
       propertyPath: mushroomMask
