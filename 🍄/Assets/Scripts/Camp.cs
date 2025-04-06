@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Camp : Interactable
 {
-    public GameEvent startNextDay;
+    public GameEvent onCampClicked;
 
     public override void InteractStart()
     {
-        startNextDay?.Invoke();
+        onCampClicked?.Invoke();
     }
 
     public override void InteractEnd()
