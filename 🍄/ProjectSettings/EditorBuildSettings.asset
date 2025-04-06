@@ -11,10 +11,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Final Scene.unity
     guid: 8adce1cf90c56874698f03d6a3b625f7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/New Scene.unity
     guid: d03cb140f19ccab41b8c7dec1a724af1
   - enabled: 0
     path: Assets/Scenes/UI.unity
     guid: ca648f758a4647acaaa86cd4f3040369
+  - enabled: 0
+    path: Assets/Scenes/Rasmusscene.unity
+    guid: c77e8b4b5f2463d4c9b293ed8e9bb165
   m_configObjects: {}
