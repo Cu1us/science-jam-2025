@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEngine.GraphicsBuffer;
@@ -19,9 +20,6 @@ public class WorldUI : MonoBehaviour
         Vector3 cameraPos = Camera.main.transform.position;
 
         var lookPos = cameraPos - transform.position;
-        var rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
-
-
+        transform.forward = Vector3.Lerp(transform.forward, Quaternion.AngleAxis(90, transform.right) * lookPos.normalized, 0.3f);
     }
 }

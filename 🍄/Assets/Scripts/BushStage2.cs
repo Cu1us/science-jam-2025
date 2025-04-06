@@ -17,6 +17,7 @@ public class BushStage2 : Interactable
             return;
 
         steps.Value += stepRegain;
+        SetButtonPromptVisible(false);
         isInteractable = false;
     }
 }
