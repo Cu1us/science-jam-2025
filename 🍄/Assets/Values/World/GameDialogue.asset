@@ -14,11 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameDialogue:
   - dialogueBoxes:
-    - characterPortrait: {fileID: 0}
-      dialogueText: words
-    - characterPortrait: {fileID: 0}
-      dialogueText: wor
-    - characterPortrait: {fileID: 0}
-      dialogueText: word
+    - characterPortrait: {fileID: 21300000, guid: 399bb3c6394a5864e8b56f0f7620faf1,
+        type: 3}
+      dialogueText: "Fungus: \u201CThis fungus strives for survival\u201D"
+    - characterPortrait: {fileID: 21300000, guid: 399bb3c6394a5864e8b56f0f7620faf1,
+        type: 3}
+      dialogueText: "Fungus:\u201CIt stumbled upon human, laying in cold snow, no
+        good environment for human.\u201D"
+    - characterPortrait: {fileID: 21300000, guid: 399bb3c6394a5864e8b56f0f7620faf1,
+        type: 3}
+      dialogueText: "Fungus: \u201CDo human strive to survive?\u201D"
+    - characterPortrait: {fileID: 21300000, guid: d833553c48f638f4abc37b65716af80d,
+        type: 3}
+      dialogueText: 'Bob Ek: "I do"'
+    - characterPortrait: {fileID: 21300000, guid: 399bb3c6394a5864e8b56f0f7620faf1,
+        type: 3}
+      dialogueText: "Fungus: \u201CFungus will give warmth if fed nutrients, such
+        could be found in bushes. This land is barren but one is close by\""
+    - characterPortrait: {fileID: 21300000, guid: 399bb3c6394a5864e8b56f0f7620faf1,
+        type: 3}
+      dialogueText: "Fungus: \"If you let Fungus live on human, both will not die.
+        Does this deal seem advantageous to the perspective of human?\u201D"
+    - characterPortrait: {fileID: 21300000, guid: d833553c48f638f4abc37b65716af80d,
+        type: 3}
+      dialogueText: 'Bob Ek: "It does"'
+    - characterPortrait: {fileID: 21300000, guid: 399bb3c6394a5864e8b56f0f7620faf1,
+        type: 3}
+      dialogueText: "Fungus: \u201CHurray! Now let's grub on foliage!\u201D"
   - dialogueBoxes: []
   - dialogueBoxes: []
