@@ -9,6 +9,11 @@ public class DeathManager : MonoBehaviour
     public void die()
     {
         canvas.SetActive(true);
-        Invoke("LoadScene", 1);
+        Invoke("LoadScene", 10);
+    }
+
+    void LoadScene()
+    {
+        SceneManager.LoadScene(0);
     }
 }

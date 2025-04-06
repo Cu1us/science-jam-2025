@@ -80,12 +80,6 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("AnimationSpeed" ,3);
             StartCoroutine(MovePlayer());
         }
-        if (steps.Value <= 0)
-        {
-            animator.SetTrigger("Die");
-            onDeath.Invoke();
-            dead = true;
-        }
 
         RaycastHit frontHit;
         RaycastHit backHit;
@@ -186,6 +180,14 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator MovePlayer()
     {
+        if (steps.Value <= 0)
+        {
+            Debug.Log("shouldWork");
+            animator.SetTrigger("Die");
+            onDeath.Invoke();
+            dead = true;
+            yield return 0;
+        }
         Vector3 raycastOrigin = new Vector3(transform.position.x, transform.position.y + wallCastHeight, transform.position.z);
         Vector3 yOnlyForward = Quaternion.Euler(0, transform.eulerAngles.y, 0) * Vector3.forward;
         RaycastHit hit;
