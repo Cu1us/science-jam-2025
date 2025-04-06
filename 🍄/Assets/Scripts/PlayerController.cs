@@ -135,10 +135,15 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         Vector3 raycastOrigin = new Vector3(transform.position.x, transform.position.y + floorCastHeight, transform.position.z);
 
+
+        Debug.Log("raycast origin:" + raycastOrigin);
+
         if (Physics.Raycast(raycastOrigin, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, terrain))
         {
+
             if (Physics.Raycast(raycastOrigin, Vector3.down, out hit, Mathf.Infinity, terrain))
             {
+                Debug.DrawRay(raycastOrigin, Vector3.down, Color.green, 999);
                 if (Mathf.Abs(hit.distance - desiredFloorDistance) > tolerance)
                 {
                     float correction = desiredFloorDistance - hit.distance;
