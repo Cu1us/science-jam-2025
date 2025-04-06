@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
         float finalSafeScaleX = Mathf.Max(targetSize.x, epsilon);
         mushroomMask.transform.GetChild(0).localScale = initialChildScale * (1f / finalSafeScaleX);
 
-        if (targetSize == new Vector3(0,0,0))
+        if (targetSize == new Vector3(0, 0, 0))
         {
             CurrentDay.Value++;
             OnDayProgressed.Invoke();
@@ -82,6 +83,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SceneManager.LoadScene(0);
+        }
         /*if (Input.GetKeyDown("o"))
         {
             StartCoroutine(BlackScreenZoom(new Vector3(40, 40, 40)));
